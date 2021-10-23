@@ -125,7 +125,7 @@ const EditPerson = (props) => {
           onChange={(e) => setAvatar(e.target.value)}
         />
         <Button variant="contained" type="submit">
-          Add User
+          Update Person
         </Button>
       </Box>
     </div>
