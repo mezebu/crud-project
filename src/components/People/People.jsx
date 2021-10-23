@@ -163,7 +163,7 @@ const People = () => {
               variant="contained"
               onClick={() => history.push("/addperson")}
             >
-              add new user
+              add new person
             </Button>
           </Box>
         </Box>

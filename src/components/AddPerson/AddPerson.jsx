@@ -46,10 +46,6 @@ const AddPerson = () => {
         avatar,
       })
       .then(() => {
-        setFirstName("");
-        setCountry("");
-        setLastName("");
-        setOccupation("");
         history.push("/");
       })
       .catch((error) => console.log(error));
@@ -151,7 +147,7 @@ const AddPerson = () => {
           onChange={(e) => setAvatar(e.target.value)}
         />
         <Button variant="contained" type="submit" disabled={!isFormValid}>
-          Add User
+          Add Person
         </Button>
       </Box>
     </div>
