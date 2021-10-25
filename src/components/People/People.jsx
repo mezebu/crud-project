@@ -12,6 +12,7 @@ import {
   Button,
   Container,
   IconButton,
+  Skeleton,
   TablePagination,
   ThemeProvider,
   Tooltip,
@@ -29,15 +30,18 @@ const People = () => {
   const history = useHistory();
   const classes = useStyles();
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get(url);
 
         setUsers(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -70,6 +74,8 @@ const People = () => {
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
+
+  const skeletonArray = Array(5).fill("");
 
   return (
     <Container>
@@ -135,6 +141,41 @@ const People = () => {
                       </TableRow>
                     )
                   )}
+
+                {loading &&
+                  skeletonArray.map((item, index) => (
+                    <TableRow
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                      key={index}
+                    >
+                      <TableCell align="center">
+                        <Skeleton variant="text" width={10} />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="circular" width={40} height={40} />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                      <TableCell align="center">
+                        <Skeleton variant="text" />
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
               {emptyRows > 0 && (
                 <TableRow
@@ -146,18 +187,17 @@ const People = () => {
                 </TableRow>
               )}
             </Table>
-            <Box sx={{ bgcolor: "primary.main" }}>
-              <TablePagination
-                rowsPerPageOptions={[3, 5, 7, 10]}
-                component="div"
-                count={users.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </Box>
           </TableContainer>
+          <TablePagination
+            sx={{ bgcolor: "primary.main" }}
+            rowsPerPageOptions={[3, 5, 7, 10]}
+            component="div"
+            count={users.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
           <Box sx={{ m: 1 }}>
             <Button
               variant="contained"
