@@ -107,12 +107,7 @@ const People = () => {
                       country,
                       occupation,
                     }) => (
-                      <TableRow
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                        key={id}
-                      >
+                      <TableRow key={id}>
                         <TableCell component="th" scope="row">
                           {id}
                         </TableCell>
@@ -143,13 +138,8 @@ const People = () => {
                   )}
 
                 {loading &&
-                  skeletonArray.map((item, index) => (
-                    <TableRow
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                      key={index}
-                    >
+                  skeletonArray.map((index) => (
+                    <TableRow key={index}>
                       <TableCell align="center">
                         <Skeleton variant="text" width={10} />
                       </TableCell>
@@ -189,7 +179,7 @@ const People = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            sx={{ bgcolor: "primary.main" }}
+            className={classes.tablePagination}
             rowsPerPageOptions={[3, 5, 7, 10]}
             component="div"
             count={users.length}

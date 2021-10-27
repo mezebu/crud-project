@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { createTheme } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -11,6 +12,11 @@ const useStyles = makeStyles({
     backdropFilter: "blur( 4px )",
     WebkitBackdropFilter: " blur( 4px )",
     border: "1px solid rgba( 255, 255, 255, 0.18 )",
+  },
+  tablePagination: {
+    backgroundColor: blue[300],
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5,
   },
 });
 
