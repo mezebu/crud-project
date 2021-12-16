@@ -45,8 +45,9 @@ const AddPerson = () => {
         occupation,
         avatar,
       })
-      .then(() => {
+      .then((res) => {
         history.push("/");
+        console.log(res);
       })
       .catch((error) => console.log(error));
   };
